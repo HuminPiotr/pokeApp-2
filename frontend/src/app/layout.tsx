@@ -3,6 +3,8 @@ import './styles/app.scss';
 import type { Metadata } from "next";
 import { Poppins } from 'next/font/google'
 
+import Logo from './components/Logo';
+
 const poppins = Poppins({
   weight: ['400', '700'], 
   subsets: ['latin'],     
@@ -20,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <Logo />
+        {children}
+      </body>
     </html>
   );
 }
