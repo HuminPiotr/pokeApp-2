@@ -1,5 +1,5 @@
 ### Create ability
-POST http://localhost:3000/abilities
+POST http://localhost:3030/abilities
 Content-Type: application/json 
 
  {
@@ -8,13 +8,13 @@ Content-Type: application/json
 
 
 ### Read abilities
- GET http://localhost:3000/abilities
+ GET http://localhost:3030/abilities
 
 ### Read one ability
-GET http://localhost:3000/abilities/12
+GET http://localhost:3030/abilities/12
 
 ### Update ability
-PUT http://localhost:3000/abilities
+PUT http://localhost:3030/abilities
 Content-Type: application/json
 
 {
@@ -23,5 +23,5 @@ Content-Type: application/json
 }
 
 ### Delete ability
-DELETE http://localhost:3000/abilities/14
+DELETE http://localhost:3030/abilities/14
 Content-Type: application/json

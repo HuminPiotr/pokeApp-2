@@ -1,5 +1,5 @@
 ### Create pokemon
-POST http://localhost:3000/pokemons
+POST http://localhost:3030/pokemons
 Content-Type: application/json 
 
  {
@@ -12,20 +12,21 @@ Content-Type: application/json
 
 
 ### Read pokemons
- GET http://localhost:3000/pokemons
+ GET http://localhost:3030/pokemons
 
 ### Read one pokemon
-GET http://localhost:3000/pokemons/9
+GET http://localhost:3030/pokemons/9
 
 ### Update pokemon
-PUT http://localhost:3000/pokemons
+PUT http://localhost:3030/pokemons
 Content-Type: application/json
 
 {
-    "id": 3,
-    "gender": "female"
+    "id": 9,
+    "gender": "female",
+    
 }
 
 ### Delete pokemon
-DELETE http://localhost:3000/pokemons/16
+DELETE http://localhost:3030/pokemons/16
 Content-Type: application/json
