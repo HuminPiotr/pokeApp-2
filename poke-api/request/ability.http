@@ -1,0 +1,27 @@
+### Create ability
+POST http://localhost:3000/abilities
+Content-Type: application/json 
+
+ {
+    "name": "oblivious"
+ }
+
+
+### Read abilities
+ GET http://localhost:3000/abilities
+
+### Read one ability
+GET http://localhost:3000/abilities/12
+
+### Update ability
+PUT http://localhost:3000/abilities
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "shield-dust"
+}
+
+### Delete ability
+DELETE http://localhost:3000/abilities/14
+Content-Type: application/json

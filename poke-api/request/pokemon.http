@@ -1,0 +1,31 @@
+### Create pokemon
+POST http://localhost:3000/pokemons
+Content-Type: application/json 
+
+ {
+    "name": "Psyduck",
+    "gender": "female",
+    "ability": {
+        "name": "liber"
+    }
+ }
+
+
+### Read pokemons
+ GET http://localhost:3000/pokemons
+
+### Read one pokemon
+GET http://localhost:3000/pokemons/9
+
+### Update pokemon
+PUT http://localhost:3000/pokemons
+Content-Type: application/json
+
+{
+    "id": 3,
+    "gender": "female"
+}
+
+### Delete pokemon
+DELETE http://localhost:3000/pokemons/16
+Content-Type: application/json
