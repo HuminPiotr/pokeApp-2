@@ -5,7 +5,7 @@ import React from 'react'
 import TableItem from './TableItem';
 import { usePokemon } from '@/app/context/PokemonContext';
 
-const Table: React.FC =  ( ) => {
+const Table: React.FC = () => {
     const { pokemons, removePokemon } = usePokemon();
     const tableItemList =  pokemons.map((pokemon) => 
     <TableItem 

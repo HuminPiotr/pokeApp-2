@@ -15,7 +15,7 @@ export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) =
     const [pokemons, setPokemons] = useState<PokemonType[]>([]);
 
     const fetchPokemons = async () => {
-        const response = await fetch('http://localhost:3030/pokemons', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons`, {
             method: 'GET'
         });
         const data = await response.json();
@@ -27,7 +27,7 @@ export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) =
     }
 
     const removePokemon = async (id: number) => {
-        const response = await fetch(`http://localhost:3030/pokemons/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons/${id}`, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'}
         });
