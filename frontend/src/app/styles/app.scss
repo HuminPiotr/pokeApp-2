@@ -1,5 +1,18 @@
 @import './__reset.scss';
 
+$max-width: 470px;
+$margin: 16px;
+
+@mixin frameStyles {
+    width: 100%;
+    max-width: $max-width;
+    margin: $margin auto;
+  
+    @media (max-width: 640px) {
+      max-width: 100%;
+    }
+  }
+
 body {
     font-family: "Poppins", sans-serif;
     background-color: #ff0000;
@@ -16,19 +29,43 @@ h1 {
     }
 }
 
-.main {
-    width: 100%;
-    max-width: 470px;
-    margin: 16px auto;
+.mainPage {
+   @include frameStyles;
 
     &__buttons {
         display: flex;
         justify-content: space-between;
         gap: 24px;
-        margin-bottom: 16px;
-    }
-
-    @media (max-width: 640px) {
-        max-width: 100%;
+        margin: 34px 0 16px;
     }
 }
+
+.formPage {
+    @include frameStyles;
+
+    &__back {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin: 10px 0;
+        transition: 0.2s;
+        display: inline-block;
+
+        &:hover {
+          transform: translateX(-3px);
+        }
+
+        &::first-letter {
+            font-size: 14px;
+          }
+      }
+
+      &__header {
+        color: #ffffff;
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+   
+}
+
+

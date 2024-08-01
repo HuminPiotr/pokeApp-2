@@ -1,0 +1,21 @@
+.inputField {
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+        margin: 8px 0px 16px;
+    }
+
+    &__input {
+        height: 45px;
+        margin-bottom: 8px;
+        background-color: white;
+        padding: 10px;
+        line-height: 18px;
+        border: none;
+
+        &::placeholder {
+            color: #D1D1D1;
+        }
+    }   
+}
