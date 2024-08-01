@@ -2,6 +2,7 @@ import './styles/app.scss';
 
 import type { Metadata } from "next";
 import { Poppins } from 'next/font/google'
+import { PokemonProvider } from './context/PokemonContext';
 
 import Logo from './components/Logo';
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <PokemonProvider>
     <html lang="pl">
       <body className={poppins.className}>
         <Logo />
         {children}
       </body>
     </html>
+    </PokemonProvider>
   );
 }
