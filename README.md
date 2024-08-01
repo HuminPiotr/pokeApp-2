@@ -4,6 +4,16 @@
 
 Aplikacja Pokemon to projekt rekrutacyjny, który demonstruje połączenie frontendowej aplikacji Next.js z backendowym API stworzonym w NestJS. Aplikacja korzysta z bazy danych PostgreSQL do przechowywania danych o Pokemonach.
 
+## Screenshoty
+
+### Strona główna
+
+![Strona główna](screenshots/home.png)
+
+### Formularz dodawania pokemona
+
+![Formularz dodawania pokemona](screenshots/form.png)
+
 ## Technologie
 
 - **Frontend**: Next.js, TypeScript
@@ -61,12 +71,3 @@ npm install
 npm run dev
 ```
 
-## Screenshoty
-
-### Strona główna
-
-![Strona główna](screenshots/home.png)
-
-### Formularz dodawania pokemona
-
-![Formularz dodawania pokemona](screenshots/form.png)
