@@ -60,3 +60,13 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Screenshoty
+
+### Strona główna
+
+![Strona główna](screenshots/home.png)
+
+### Formularz dodawania pokemona
+
+![Formularz dodawania pokemona](screenshots/form.png)
