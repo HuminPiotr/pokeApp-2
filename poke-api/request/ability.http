@@ -3,7 +3,7 @@ POST http://localhost:3030/abilities
 Content-Type: application/json 
 
  {
-    "name": "oblivious"
+    "name": "water-absorb"
  }
 
 
