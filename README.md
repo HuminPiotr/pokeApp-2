@@ -31,7 +31,7 @@ Aplikacja Pokemon to projekt rekrutacyjny, który demonstruje połączenie front
 
 2. Przejdź do katalogu projektu:
 ```bash
-cd your-repo/backend
+cd your-repo/fronted
 ```
 
 3. Skopiuj plik example.env jako .env i uzupełnij dane do połączenia z bazą danych:
