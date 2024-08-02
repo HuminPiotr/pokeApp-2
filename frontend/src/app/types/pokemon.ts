@@ -8,7 +8,7 @@ export interface PokemonType {
 }
 
 export interface AbilityType {
-    id: number;
+    id?: number;
     name: string;
     pokemon?: PokemonType[];
 }

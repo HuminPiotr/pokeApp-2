@@ -3,9 +3,10 @@ POST http://localhost:3030/pokemons
 Content-Type: application/json 
 
  {
-    "name": "Psyduck",
+    "name": "Mewto",
     "gender": "female",
     "ability": {
+        "id": 11,
         "name": "liber"
     }
  }

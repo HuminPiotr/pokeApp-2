@@ -1,11 +1,12 @@
+import { AbilityType } from "@/app/types/pokemon";
 import "./styles.scss";
 
 import React from 'react';
 
 interface SelectInputProps {
   label: string;
-  options: string[];
-  value: string;
+  options: AbilityType[];
+  value: AbilityType;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   required?: boolean;
 }
@@ -16,15 +17,15 @@ const SelectField: React.FC<SelectInputProps> = ({ label, options, value, onChan
     <div className="selectField">
     <label className="selectField__label">{label}</label>
     <select 
-      value={value}
+      value={value.name}
       onChange={onChange}
       required={required}
       className="selectField__select"
     >
-      <option value="" className="selectField__option" disabled>Umiejętność</option>
+      <option id="0" value="" className="selectField__option" disabled>Umiejętność</option>
       {options.map((option) => (
-        <option key={option} value={option} className="selectField__option">
-          {option}
+        <option key={option.id} value={option.name} className="selectField__option">
+          {option.name}
         </option>
       ))}
     </select>

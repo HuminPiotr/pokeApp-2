@@ -13,7 +13,7 @@ import { AbilityType } from "@/app/types/pokemon";
 const Form = () => {
     const [name, setName] = useState('');
     const [abilities, setAbilities] = useState<AbilityType[]>([]);
-    const [selectedAbility, setSelectedAbility] = useState<string>('');
+    const [selectedAbility, setSelectedAbility] = useState<AbilityType>({id:0, name:""});
     const [gender, setGender] = useState<string>('male');
 
     const router = useRouter();
@@ -79,9 +79,9 @@ const Form = () => {
         />
         <SelectField 
             label="Umiejętność"
-            options={abilities.map((ability) => ability.name)}
+            options={abilities}
             value={selectedAbility}
-            onChange={(e) => setSelectedAbility(e.target.value)}
+            onChange={(e) => setSelectedAbility({id: Number(e.target.id), name: e.target.value})}
             required
         />
         <RadioField
