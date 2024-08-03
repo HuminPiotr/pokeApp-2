@@ -7,11 +7,11 @@ import { usePokemon } from '@/app/context/PokemonContext';
 
 const Table: React.FC = () => {
     const { pokemons, removePokemon } = usePokemon();
-    console.log(pokemons);
     const tableItemList =  pokemons.map((pokemon) => 
     <TableItem 
         name={pokemon.name} 
         ability={pokemon.ability.name}
+        gender={pokemon.gender}
         id={pokemon.id} 
         key={pokemon.id} 
         removeFunction={removePokemon} 
