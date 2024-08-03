@@ -8,11 +8,11 @@ Aplikacja Pokemon to projekt rekrutacyjny, który demonstruje połączenie front
 
 ### Strona główna
 
-![Strona główna](screenshots/home.png)
+![Strona główna](screenshots/home_ss.png)
 
 ### Formularz dodawania pokemona
 
-![Formularz dodawania pokemona](screenshots/form.png)
+![Formularz dodawania pokemona](screenshots/form_ss.png)
 
 ## Technologie
 
