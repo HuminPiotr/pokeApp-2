@@ -8,8 +8,9 @@ import { AbilityType } from "../types/pokemon";
 interface PokemonContextProps {
     pokemons: PokemonType[],
     fetchPokemons: () => Promise<void>;
-    addPokemon?: (pokemon: CreateNewPokemonArguments) => Promise<void>;
+    addPokemon: (pokemon: CreateNewPokemonArguments) => Promise<void>;
     removePokemon: (id: number) => Promise<void>;
+    isLoading: boolean;
 }
 
 interface CreateNewPokemonArguments {
@@ -22,18 +23,31 @@ const PokemonContext = createContext<PokemonContextProps | undefined>(undefined)
 
 export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) => {
     const [pokemons, setPokemons] = useState<PokemonType[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     const router = useRouter();
 
     const fetchPokemons = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons`, {
-            method: 'GET'
-        });
-        const data = await response.json();
-        setPokemons(data);
+        setIsLoading(true);
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons`, {
+                method: 'GET'
+            });
+            const data = await response.json();
+            setPokemons(data);
+        } 
+        catch (error) {
+            console.error('Error fetching abilities:', error);
+        }
+        finally {
+            setIsLoading(false);
+        }
+
     }
 
     const addPokemon = async ({name, ability, gender}: CreateNewPokemonArguments) => {
         try {
+            setIsLoading(true);
             const newPokemon = {
               name,
               ability,
@@ -55,21 +69,35 @@ export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) =
             // Przekierowanie po pomyślnym dodaniu
             router.push('/');
       
-          } catch (error) {
+          } 
+          catch (error) {
             console.error('Error adding new pokemon:', error);
+          } 
+          finally {
+            setIsLoading(false);
           }
     }
 
     const removePokemon = async (id: number) => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons/${id}`, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'}
-        });
-        setPokemons((prevPokemons) => prevPokemons.filter((pokemon) => pokemon.id !== id));
+        setIsLoading(true);
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons/${id}`, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'}
+            });
+            setPokemons((prevPokemons) => prevPokemons.filter((pokemon) => pokemon.id !== id));
+        }
+        catch (error) {
+            console.error('Error remove pokemon:', error);
+          } 
+          finally {
+            setIsLoading(false);
+          }
+
     }
 
     return (
-        <PokemonContext.Provider value={{ pokemons, fetchPokemons, addPokemon, removePokemon}}>
+        <PokemonContext.Provider value={{ pokemons, fetchPokemons, addPokemon, removePokemon, isLoading}}>
             {children}
         </PokemonContext.Provider>
     );

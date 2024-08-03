@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google'
 import { PokemonProvider } from './context/PokemonContext';
 
 import Logo from './components/Logo';
+import Spinner from './components/Spinner';
 
 const poppins = Poppins({
   weight: ['400', '700'], 
@@ -25,6 +26,7 @@ export default function RootLayout({
     <PokemonProvider>
     <html lang="pl">
       <body className={poppins.className}>
+        <Spinner />
         <Logo />
         {children}
       </body>
