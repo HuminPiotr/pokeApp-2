@@ -47,8 +47,6 @@ export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) =
               },
               body: JSON.stringify(newPokemon),
             });
-
-            console.log(response);
       
             if (!response.ok) {
               throw new Error(`Failed to create new pokemon: ${response.statusText}`);
