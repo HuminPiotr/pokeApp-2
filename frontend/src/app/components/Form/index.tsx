@@ -2,21 +2,22 @@
 import "./styles.scss";
 
 import React, {useState, useEffect} from 'react'
-import { useRouter } from "next/navigation";
+import { usePokemon } from "@/app/context/PokemonContext";
 
 import InputField from "./components/InputField";
 import SelectField from "./components/SelectField";
 import RadioField from "./components/RadioField";
 
-import { AbilityType } from "@/app/types/pokemon";
+import { AbilityType, GenderType } from "@/app/types/pokemon";
 
 const Form = () => {
     const [name, setName] = useState('');
     const [abilities, setAbilities] = useState<AbilityType[]>([]);
     const [selectedAbility, setSelectedAbility] = useState<AbilityType>({id:0, name:""});
-    const [gender, setGender] = useState<string>('male');
+    const [gender, setGender] = useState<GenderType>('male');
 
-    const router = useRouter();
+    const {addPokemon} = usePokemon();
+
 
 // Pobieranie opcji dla Umiejętności
   useEffect(() => {
@@ -39,31 +40,8 @@ const Form = () => {
   // Funkcja wysyłajaca dane z formularza do bazy danych
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const newPokemon = {
-        name,
-        ability: selectedAbility,
-        gender,
-      };
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPokemon),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to create new pokemon: ${response.statusText}`);
-      }
-    
-      router.push('/');
-
-      
-    } catch (error) {
-      console.error('Error adding new pokemon:', error);
-    }
+    if(addPokemon)
+    await addPokemon({name, ability: selectedAbility, gender})
   };
 
 
@@ -88,7 +66,7 @@ const Form = () => {
             name="gender"
             label="Płeć"
             selectedValue={gender}
-            onChange={(e) => setGender(e.target.value)}
+            onChange={(e) => setGender(e.target.value as GenderType)}
         />
 
         <input type="submit" value="Zapisz" className='form__button' />

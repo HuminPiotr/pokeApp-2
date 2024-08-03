@@ -1,18 +1,28 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { PokemonType } from "../types/pokemon";
+import { useRouter } from "next/navigation";
+
+import { GenderType, PokemonType } from "../types/pokemon";
+import { AbilityType } from "../types/pokemon";
 
 interface PokemonContextProps {
     pokemons: PokemonType[],
     fetchPokemons: () => Promise<void>;
-    addPokemon?: (pokemon: PokemonType) => Promise<void>;
+    addPokemon?: (pokemon: CreateNewPokemonArguments) => Promise<void>;
     removePokemon: (id: number) => Promise<void>;
+}
+
+interface CreateNewPokemonArguments {
+    name: string;
+    ability: AbilityType;
+    gender: GenderType;
 }
 
 const PokemonContext = createContext<PokemonContextProps | undefined>(undefined);
 
 export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) => {
     const [pokemons, setPokemons] = useState<PokemonType[]>([]);
+    const router = useRouter();
 
     const fetchPokemons = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons`, {
@@ -22,8 +32,34 @@ export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) =
         setPokemons(data);
     }
 
-    const addPokemon = (pokemon: PokemonType) => {
-        console.log('add');
+    const addPokemon = async ({name, ability, gender}: CreateNewPokemonArguments) => {
+        try {
+            const newPokemon = {
+              name,
+              ability,
+              gender,
+            };
+      
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pokemons`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(newPokemon),
+            });
+
+            console.log(response);
+      
+            if (!response.ok) {
+              throw new Error(`Failed to create new pokemon: ${response.statusText}`);
+            }
+          
+            // Przekierowanie po pomyślnym dodaniu
+            router.push('/');
+      
+          } catch (error) {
+            console.error('Error adding new pokemon:', error);
+          }
     }
 
     const removePokemon = async (id: number) => {
@@ -35,7 +71,7 @@ export const PokemonProvider: React.FC<{children: ReactNode }> = ({ children}) =
     }
 
     return (
-        <PokemonContext.Provider value={{ pokemons, fetchPokemons, removePokemon}}>
+        <PokemonContext.Provider value={{ pokemons, fetchPokemons, addPokemon, removePokemon}}>
             {children}
         </PokemonContext.Provider>
     );
